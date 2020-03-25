@@ -1,3 +1,5 @@
+import logger from '../util/logger';
+
 function AuthController() {
   return {
     login: function login(req:any, res:any) {
@@ -7,6 +9,10 @@ function AuthController() {
         console.log('Successful login');
       });
       res.json(user);
+    },
+    signUp: function name(req:any, res:any) {
+      logger.info('AuthController-signUp');
+      res.json({});
     }
   };
 }
