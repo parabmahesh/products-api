@@ -1,11 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import authRoutes from './routes/authRoutes';
-import bookRouter from './routes/bookRouter';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import authRoutes from './routes/authRoutes';
+import bookRouter from './routes/bookRouter';
+import productRouter from './routes/productRouter';
 import passportConfig from './config/passport';
+import categoriesRouter from './routes/categoriesRouter';
+import supplierRouter from './routes/supplierRoutes';
 
 const PORT = 3000;
 const app = express();
@@ -23,8 +26,12 @@ app.use(session({ secret: 'library' }));
 passportConfig(app);
 
 // Register application routes
-app.use('/api', authRoutes);
-app.use('/api', bookRouter);
+app.use('/api/auth', authRoutes);
+app.use('/api/books', bookRouter);
+app.use('/api/products', productRouter);
+app.use('/api/categories', categoriesRouter);
+app.use('/api/suppliers', supplierRouter);
+
 
 
 // Start listening

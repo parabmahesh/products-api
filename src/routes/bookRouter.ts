@@ -8,10 +8,10 @@ const booksController = BookController(Book);
 
 // Subscribe to various HTTP methods
 const bookRouter = express.Router();
-bookRouter.get('/books', booksController.getAllBooks);
-bookRouter.get('/books/:id', booksController.getBookById);
-bookRouter.post('/books', booksController.createBook);
-bookRouter.delete('/books/:id', booksController.deleteBook);
-bookRouter.put('/books/:id', booksController.updateBook);
+bookRouter.get('/', booksController.getAllBooks);
+bookRouter.get('/:id', booksController.getBookById);
+bookRouter.post('/', booksController.createBook);
+bookRouter.delete('/:id', booksController.deleteBook);
+bookRouter.put('/:id', booksController.updateBook);
 
 export default bookRouter;
