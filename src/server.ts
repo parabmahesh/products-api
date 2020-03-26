@@ -6,7 +6,7 @@ import session from 'express-session';
 import authRoutes from './routes/authRoutes';
 import bookRouter from './routes/bookRouter';
 import productRouter from './routes/productRouter';
-import passportConfig from './config/passport';
+import initializePassport from './config/passport';
 import categoriesRouter from './routes/categoriesRouter';
 import supplierRouter from './routes/supplierRoutes';
 
@@ -22,8 +22,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({ secret: 'library' }));
 
-
-passportConfig(app);
+// Initialze passport for user authentication
+initializePassport(app);
 
 // Register application routes
 app.use('/api/auth', authRoutes);
@@ -31,8 +31,6 @@ app.use('/api/books', bookRouter);
 app.use('/api/products', productRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/suppliers', supplierRouter);
-
-
 
 // Start listening
 app.listen(PORT, () => {

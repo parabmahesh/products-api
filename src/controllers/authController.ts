@@ -1,21 +1,13 @@
-import passport from 'passport';
 import logger from '../util/logger';
 import User from '../models/user';
 
 function AuthController() {
   return {
     login: function login(req:any, res:any) {
-      console.debug('AuthController', req.body);
-      const user = req.body;
-      debugger
-      passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' });
-
-      req.login(user, () => {
-        console.log('Successful login');
-      });
-      res.json(user);
+      logger.debug('AuthController.login');
+      res.send(req.body);
     },
-    signUp: function name(req:any, res:any) {
+    signup: function name(req:any, res:any) {
       logger.info('AuthController-signUp:Creating new user');
       const user = new User(req.body);
       user.save((err:any, _user:any) => {
